@@ -1,50 +1,49 @@
--- Création des tables
 CREATE TABLE personne ( 
     idPersonne INTEGER, 
-    nom VARCHAR(30) NOT NULL, 
-    prénom VARCHAR(30) NOT NULL, 
+    nom TEXT NOT NULL, 
+    prenom TEXT NOT NULL, 
     CONSTRAINT pkPersonne PRIMARY KEY (idPersonne) 
 ); 
 
 CREATE TABLE film ( 
     idFilm INTEGER, 
-    idRéalisateur INTEGER, 
-    titre VARCHAR(50), 
-    genre VARCHAR(20), 
-    année YEAR, 
+    idRealisateur INTEGER, 
+    titre TEXT, 
+    genre TEXT, 
+    annee INTEGER, 
     CONSTRAINT pkFilm PRIMARY KEY (idFilm), 
-    CONSTRAINT fkRéamisateur FOREIGN KEY (idRéalisateur) REFERENCES personne (idPersonne) 
+    CONSTRAINT fkRealisateur FOREIGN KEY (idRealisateur) REFERENCES personne (idPersonne) 
 ); 
 
 CREATE TABLE jouer ( 
     idActeur INTEGER, 
     idFilm INTEGER, 
-    rôle VARCHAR(50), 
+    role TEXT, 
     CONSTRAINT pkActeurFilm PRIMARY KEY (idActeur, idFilm), 
     CONSTRAINT fkActeur FOREIGN KEY (idActeur) REFERENCES personne (idPersonne), 
     CONSTRAINT fkFilm FOREIGN KEY (idFilm) REFERENCES film (idFilm) 
 ); 
 
-CREATE TABLE cinéma ( 
-    idCinéma INTEGER, 
-    nom VARCHAR(30), 
-    adresse VARCHAR(70), 
-    CONSTRAINT pkCinéma PRIMARY KEY (idCinéma) 
+CREATE TABLE cinema ( 
+    idCinema INTEGER, 
+    nom TEXT, 
+    adresse TEXT, 
+    CONSTRAINT pkCinema PRIMARY KEY (idCinema) 
 ); 
 
 CREATE TABLE projection ( 
-    idCinéma INTEGER, 
+    idCinema INTEGER, 
     idFilm INTEGER, 
-    jour DATE, 
-    CONSTRAINT pkCinémaFilmJour PRIMARY KEY (idCinéma, idFilm, jour), 
-    CONSTRAINT fkCinéma FOREIGN KEY (idCinéma) REFERENCES cinéma (idCinéma), 
+    jour TEXT, 
+    CONSTRAINT pkCinemaFilmJour PRIMARY KEY (idCinema, idFilm, jour), 
+    CONSTRAINT fkCinéma FOREIGN KEY (idCinema) REFERENCES cinema (idCinema), 
     CONSTRAINT fkFilm2 FOREIGN KEY (idFilm) REFERENCES film (idFilm) 
 );
 
--- La table cinéma
-INSERT INTO cinéma VALUES (1, 'Mega CGR', 'Place de la Brèche, 79000 Niort');
-INSERT INTO cinéma VALUES (2, 'CGR Dragon', '8 Cours des Dames, 17000 Rochelle');
-INSERT INTO cinéma VALUES (3, 'CGR Le Castille', '24 Place du Maréchal Philippe Leclerc, 86000 Poitiers');
+-- La table cinema
+INSERT INTO cinema VALUES (1, 'Mega CGR', 'Place de la Brèche, 79000 Niort');
+INSERT INTO cinema VALUES (2, 'CGR Dragon', '8 Cours des Dames, 17000 Rochelle');
+INSERT INTO cinema VALUES (3, 'CGR Le Castille', '24 Place du Maréchal Philippe Leclerc, 86000 Poitiers');
 
 
 -- La table personne
@@ -94,9 +93,9 @@ INSERT INTO film VALUES (1, 1, 'Arnaques, crimes et botanique', 'Comédie', 1998
 INSERT INTO film VALUES (2, 6, 'Les évadés', 'Drame', 1994);
 INSERT INTO film VALUES (3, 9, 'Seven', 'Policier', 1895);
 INSERT INTO film VALUES (4, 13, 'Usual Suspects', 'Thriller', 1995);
-INSERT INTO film VALUES (5, 17, 'Ocean\'s eleven', 'Comédie policière', 2001);
+INSERT INTO film VALUES (5, 17, 'Ocean''s eleven', 'Comédie policière', 2001);
 INSERT INTO film VALUES (6, 20, 'Inception', 'Action', 2010);
-INSERT INTO film VALUES (7, 23, 'L\'armée des 12 singes', 'Science-fiction', 1995);
+INSERT INTO film VALUES (7, 23, 'L''armée des 12 singes', 'Science-fiction', 1995);
 INSERT INTO film VALUES (8, 26, 'Mystic River', 'Drame', 2003);
 INSERT INTO film VALUES (9, 9, 'Fight Club', 'Drame', 1999);
 INSERT INTO film VALUES (10, 27, 'Into the Wild', 'Aventure', 2008);
